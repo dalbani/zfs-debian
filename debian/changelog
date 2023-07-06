@@ -1,3 +1,9 @@
+zfs-linux (2.2.0~rc1-0ubuntu1) mantic; urgency=medium
+
+  * New upstream release.
+
+ -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Thu, 06 Jul 2023 18:09:52 +0100
+
 zfs-linux (2.1.99-0ubuntu4) mantic; urgency=medium
 
   * Package master snapshot (zfs-2.1.99-1978-g4f583a827e)
@@ -31,6 +37,15 @@ zfs-linux (2.1.99-0ubuntu1) mantic; urgency=medium
 
  -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Tue, 23 May 2023 16:00:16 +0100
 
+zfs-linux (2.1.12-1) unstable; urgency=medium
+
+  * New upstream version 2.1.12
+  * Remove already merged patches.
+  * Rebase existing patches.
+  * New symbols for libzfs4linux and libzpool5linux.
+
+ -- Mo Zhou <lumin@debian.org>  Wed, 14 Jun 2023 21:57:31 -0700
+
 zfs-linux (2.1.11-1ubuntu1) mantic; urgency=medium
 
   * Merge from Debian Unstable (LP: #2008245), remaining changes:
@@ -58,7 +73,7 @@ zfs-linux (2.1.11-1) unstable; urgency=medium
 
   [ Aron Xu ]
   * New upstream stable point release version 2.1.11
-  * Drop patches that are alreay in upstream stable release
+  * Drop patches that are already in upstream stable release
 
  -- Aron Xu <aron@debian.org>  Sun, 23 Apr 2023 17:29:38 +0800
 

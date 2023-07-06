@@ -248,11 +248,10 @@ zil_kstats_global_update(kstat_t *ksp, int rw)
  */
 static int
 zil_read_log_block(zilog_t *zilog, boolean_t decrypt, const blkptr_t *bp,
-    blkptr_t *nbp, void *dst, char **end)
+    blkptr_t *nbp, char **begin, char **end, arc_buf_t **abuf)
 {
 	zio_flag_t zio_flags = ZIO_FLAG_CANFAIL;
 	arc_flags_t aflags = ARC_FLAG_WAIT;
-	arc_buf_t *abuf = NULL;
 	zbookmark_phys_t zb;
 	int error;
 
@@ -269,7 +268,7 @@ zil_read_log_block(zilog_t *zilog, boolean_t decrypt, const blkptr_t *bp,
 	    ZB_ZIL_OBJECT, ZB_ZIL_LEVEL, bp->blk_cksum.zc_word[ZIL_ZC_SEQ]);
 
 	error = arc_read(NULL, zilog->zl_spa, bp, arc_getbuf_func,
-	    &abuf, ZIO_PRIORITY_SYNC_READ, zio_flags, &aflags, &zb);
+	    abuf, ZIO_PRIORITY_SYNC_READ, zio_flags, &aflags, &zb);
 
 	if (error == 0) {
 		zio_cksum_t cksum = bp->blk_cksum;
@@ -284,23 +283,23 @@ zil_read_log_block(zilog_t *zilog, boolean_t decrypt, const blkptr_t *bp,
 		 */
 		cksum.zc_word[ZIL_ZC_SEQ]++;
 
+		uint64_t size = BP_GET_LSIZE(bp);
 		if (BP_GET_CHECKSUM(bp) == ZIO_CHECKSUM_ZILOG2) {
-			zil_chain_t *zilc = abuf->b_data;
+			zil_chain_t *zilc = (*abuf)->b_data;
 			char *lr = (char *)(zilc + 1);
-			uint64_t len = zilc->zc_nused - sizeof (zil_chain_t);
 
 			if (memcmp(&cksum, &zilc->zc_next_blk.blk_cksum,
-			    sizeof (cksum)) || BP_IS_HOLE(&zilc->zc_next_blk)) {
+			    sizeof (cksum)) || BP_IS_HOLE(&zilc->zc_next_blk) ||
+			    zilc->zc_nused < sizeof (*zilc) ||
+			    zilc->zc_nused > size) {
 				error = SET_ERROR(ECKSUM);
 			} else {
-				ASSERT3U(len, <=, SPA_OLD_MAXBLOCKSIZE);
-				memcpy(dst, lr, len);
-				*end = (char *)dst + len;
+				*begin = lr;
+				*end = lr + zilc->zc_nused - sizeof (*zilc);
 				*nbp = zilc->zc_next_blk;
 			}
 		} else {
-			char *lr = abuf->b_data;
-			uint64_t size = BP_GET_LSIZE(bp);
+			char *lr = (*abuf)->b_data;
 			zil_chain_t *zilc = (zil_chain_t *)(lr + size) - 1;
 
 			if (memcmp(&cksum, &zilc->zc_next_blk.blk_cksum,
@@ -308,15 +307,11 @@ zil_read_log_block(zilog_t *zilog, boolean_t decrypt, const blkptr_t *bp,
 			    (zilc->zc_nused > (size - sizeof (*zilc)))) {
 				error = SET_ERROR(ECKSUM);
 			} else {
-				ASSERT3U(zilc->zc_nused, <=,
-				    SPA_OLD_MAXBLOCKSIZE);
-				memcpy(dst, lr, zilc->zc_nused);
-				*end = (char *)dst + zilc->zc_nused;
+				*begin = lr;
+				*end = lr + zilc->zc_nused;
 				*nbp = zilc->zc_next_blk;
 			}
 		}
-
-		arc_buf_destroy(abuf, &abuf);
 	}
 
 	return (error);
@@ -468,7 +463,6 @@ zil_parse(zilog_t *zilog, zil_parse_blk_func_t *parse_blk_func,
 	uint64_t blk_count = 0;
 	uint64_t lr_count = 0;
 	blkptr_t blk, next_blk = {{{{0}}}};
-	char *lrbuf, *lrp;
 	int error = 0;
 
 	/*
@@ -486,13 +480,13 @@ zil_parse(zilog_t *zilog, zil_parse_blk_func_t *parse_blk_func,
 	 * If the log has been claimed, stop if we encounter a sequence
 	 * number greater than the highest claimed sequence number.
 	 */
-	lrbuf = zio_buf_alloc(SPA_OLD_MAXBLOCKSIZE);
 	zil_bp_tree_init(zilog);
 
 	for (blk = zh->zh_log; !BP_IS_HOLE(&blk); blk = next_blk) {
 		uint64_t blk_seq = blk.blk_cksum.zc_word[ZIL_ZC_SEQ];
 		int reclen;
-		char *end = NULL;
+		char *lrp, *end;
+		arc_buf_t *abuf = NULL;
 
 		if (blk_seq > claim_blk_seq)
 			break;
@@ -508,8 +502,10 @@ zil_parse(zilog_t *zilog, zil_parse_blk_func_t *parse_blk_func,
 			break;
 
 		error = zil_read_log_block(zilog, decrypt, &blk, &next_blk,
-		    lrbuf, &end);
+		    &lrp, &end, &abuf);
 		if (error != 0) {
+			if (abuf)
+				arc_buf_destroy(abuf, &abuf);
 			if (claimed) {
 				char name[ZFS_MAX_DATASET_NAME_LEN];
 
@@ -522,20 +518,25 @@ zil_parse(zilog_t *zilog, zil_parse_blk_func_t *parse_blk_func,
 			break;
 		}
 
-		for (lrp = lrbuf; lrp < end; lrp += reclen) {
+		for (; lrp < end; lrp += reclen) {
 			lr_t *lr = (lr_t *)lrp;
 			reclen = lr->lrc_reclen;
 			ASSERT3U(reclen, >=, sizeof (lr_t));
-			if (lr->lrc_seq > claim_lr_seq)
+			if (lr->lrc_seq > claim_lr_seq) {
+				arc_buf_destroy(abuf, &abuf);
 				goto done;
+			}
 
 			error = parse_lr_func(zilog, lr, arg, txg);
-			if (error != 0)
+			if (error != 0) {
+				arc_buf_destroy(abuf, &abuf);
 				goto done;
+			}
 			ASSERT3U(max_lr_seq, <, lr->lrc_seq);
 			max_lr_seq = lr->lrc_seq;
 			lr_count++;
 		}
+		arc_buf_destroy(abuf, &abuf);
 	}
 done:
 	zilog->zl_parse_error = error;
@@ -545,7 +546,6 @@ done:
 	zilog->zl_parse_lr_count = lr_count;
 
 	zil_bp_tree_fini(zilog);
-	zio_buf_free(lrbuf, SPA_OLD_MAXBLOCKSIZE);
 
 	return (error);
 }
@@ -798,8 +798,8 @@ zil_free_lwb(zilog_t *zilog, lwb_t *lwb)
 {
 	ASSERT(MUTEX_HELD(&zilog->zl_lock));
 	ASSERT(!MUTEX_HELD(&lwb->lwb_vdev_lock));
-	ASSERT(list_is_empty(&lwb->lwb_waiters));
-	ASSERT(list_is_empty(&lwb->lwb_itxs));
+	VERIFY(list_is_empty(&lwb->lwb_waiters));
+	VERIFY(list_is_empty(&lwb->lwb_itxs));
 	ASSERT(avl_is_empty(&lwb->lwb_vdev_tree));
 	ASSERT3P(lwb->lwb_write_zio, ==, NULL);
 	ASSERT3P(lwb->lwb_root_zio, ==, NULL);
@@ -1397,8 +1397,13 @@ zil_lwb_flush_vdevs_done(zio_t *zio)
 	zil_commit_waiter_t *zcw;
 	itx_t *itx;
 	uint64_t txg;
+	list_t itxs, waiters;
 
 	spa_config_exit(zilog->zl_spa, SCL_STATE, lwb);
+
+	list_create(&itxs, sizeof (itx_t), offsetof(itx_t, itx_node));
+	list_create(&waiters, sizeof (zil_commit_waiter_t),
+	    offsetof(zil_commit_waiter_t, zcw_node));
 
 	hrtime_t t = gethrtime() - lwb->lwb_issued_timestamp;
 
@@ -1407,9 +1412,6 @@ zil_lwb_flush_vdevs_done(zio_t *zio)
 	zilog->zl_last_lwb_latency = (zilog->zl_last_lwb_latency * 7 + t) / 8;
 
 	lwb->lwb_root_zio = NULL;
-
-	ASSERT3S(lwb->lwb_state, ==, LWB_STATE_WRITE_DONE);
-	lwb->lwb_state = LWB_STATE_FLUSH_DONE;
 
 	if (zilog->zl_last_lwb_opened == lwb) {
 		/*
@@ -1421,15 +1423,22 @@ zil_lwb_flush_vdevs_done(zio_t *zio)
 		zilog->zl_commit_lr_seq = zilog->zl_lr_seq;
 	}
 
+	list_move_tail(&itxs, &lwb->lwb_itxs);
+	list_move_tail(&waiters, &lwb->lwb_waiters);
+	txg = lwb->lwb_issued_txg;
+
+	ASSERT3S(lwb->lwb_state, ==, LWB_STATE_WRITE_DONE);
+	lwb->lwb_state = LWB_STATE_FLUSH_DONE;
+
 	mutex_exit(&zilog->zl_lock);
 
-	while ((itx = list_remove_head(&lwb->lwb_itxs)) != NULL)
+	while ((itx = list_remove_head(&itxs)) != NULL)
 		zil_itx_destroy(itx);
+	list_destroy(&itxs);
 
-	while ((zcw = list_remove_head(&lwb->lwb_waiters)) != NULL) {
+	while ((zcw = list_remove_head(&waiters)) != NULL) {
 		mutex_enter(&zcw->zcw_lock);
 
-		ASSERT3P(zcw->zcw_lwb, ==, lwb);
 		zcw->zcw_lwb = NULL;
 		/*
 		 * We expect any ZIO errors from child ZIOs to have been
@@ -1454,9 +1463,9 @@ zil_lwb_flush_vdevs_done(zio_t *zio)
 
 		mutex_exit(&zcw->zcw_lock);
 	}
+	list_destroy(&waiters);
 
 	mutex_enter(&zilog->zl_lwb_io_lock);
-	txg = lwb->lwb_issued_txg;
 	ASSERT3U(zilog->zl_lwb_inflight[txg & TXG_MASK], >, 0);
 	zilog->zl_lwb_inflight[txg & TXG_MASK]--;
 	if (zilog->zl_lwb_inflight[txg & TXG_MASK] == 0)
@@ -2516,10 +2525,10 @@ zil_clean(zilog_t *zilog, uint64_t synced_txg)
  * This function will traverse the queue of itxs that need to be
  * committed, and move them onto the ZIL's zl_itx_commit_list.
  */
-static void
+static uint64_t
 zil_get_commit_list(zilog_t *zilog)
 {
-	uint64_t otxg, txg;
+	uint64_t otxg, txg, wtxg = 0;
 	list_t *commit_list = &zilog->zl_itx_commit_list;
 
 	ASSERT(MUTEX_HELD(&zilog->zl_issuer_lock));
@@ -2553,10 +2562,22 @@ zil_get_commit_list(zilog_t *zilog)
 		 */
 		ASSERT(zilog_is_dirty_in_txg(zilog, txg) ||
 		    spa_freeze_txg(zilog->zl_spa) != UINT64_MAX);
-		list_move_tail(commit_list, &itxg->itxg_itxs->i_sync_list);
+		list_t *sync_list = &itxg->itxg_itxs->i_sync_list;
+		if (unlikely(zilog->zl_suspend > 0)) {
+			/*
+			 * ZIL was just suspended, but we lost the race.
+			 * Allow all earlier itxs to be committed, but ask
+			 * caller to do txg_wait_synced(txg) for any new.
+			 */
+			if (!list_is_empty(sync_list))
+				wtxg = MAX(wtxg, txg);
+		} else {
+			list_move_tail(commit_list, sync_list);
+		}
 
 		mutex_exit(&itxg->itxg_lock);
 	}
+	return (wtxg);
 }
 
 /*
@@ -2944,11 +2965,12 @@ zil_process_commit_list(zilog_t *zilog, zil_commit_waiter_t *zcw, list_t *ilwbs)
  * not issued, we rely on future calls to zil_commit_writer() to issue
  * the lwb, or the timeout mechanism found in zil_commit_waiter().
  */
-static void
+static uint64_t
 zil_commit_writer(zilog_t *zilog, zil_commit_waiter_t *zcw)
 {
 	list_t ilwbs;
 	lwb_t *lwb;
+	uint64_t wtxg = 0;
 
 	ASSERT(!MUTEX_HELD(&zilog->zl_lock));
 	ASSERT(spa_writeable(zilog->zl_spa));
@@ -2978,7 +3000,7 @@ zil_commit_writer(zilog_t *zilog, zil_commit_waiter_t *zcw)
 
 	ZIL_STAT_BUMP(zilog, zil_commit_writer_count);
 
-	zil_get_commit_list(zilog);
+	wtxg = zil_get_commit_list(zilog);
 	zil_prune_commit_list(zilog);
 	zil_process_commit_list(zilog, zcw, &ilwbs);
 
@@ -2987,6 +3009,7 @@ out:
 	while ((lwb = list_remove_head(&ilwbs)) != NULL)
 		zil_lwb_write_issue(zilog, lwb);
 	list_destroy(&ilwbs);
+	return (wtxg);
 }
 
 static void
@@ -3502,7 +3525,7 @@ zil_commit_impl(zilog_t *zilog, uint64_t foid)
 	zil_commit_waiter_t *zcw = zil_alloc_commit_waiter();
 	zil_commit_itx_assign(zilog, zcw);
 
-	zil_commit_writer(zilog, zcw);
+	uint64_t wtxg = zil_commit_writer(zilog, zcw);
 	zil_commit_waiter(zilog, zcw);
 
 	if (zcw->zcw_zio_error != 0) {
@@ -3517,6 +3540,8 @@ zil_commit_impl(zilog_t *zilog, uint64_t foid)
 		DTRACE_PROBE2(zil__commit__io__error,
 		    zilog_t *, zilog, zil_commit_waiter_t *, zcw);
 		txg_wait_synced(zilog->zl_dmu_pool, 0);
+	} else if (wtxg != 0) {
+		txg_wait_synced(zilog->zl_dmu_pool, wtxg);
 	}
 
 	zil_free_commit_waiter(zcw);
@@ -3896,11 +3921,13 @@ zil_suspend(const char *osname, void **cookiep)
 		return (error);
 	zilog = dmu_objset_zil(os);
 
+	mutex_enter(&zilog->zl_issuer_lock);
 	mutex_enter(&zilog->zl_lock);
 	zh = zilog->zl_header;
 
 	if (zh->zh_flags & ZIL_REPLAY_NEEDED) {		/* unplayed log */
 		mutex_exit(&zilog->zl_lock);
+		mutex_exit(&zilog->zl_issuer_lock);
 		dmu_objset_rele(os, suspend_tag);
 		return (SET_ERROR(EBUSY));
 	}
@@ -3914,6 +3941,7 @@ zil_suspend(const char *osname, void **cookiep)
 	if (cookiep == NULL && !zilog->zl_suspending &&
 	    (zilog->zl_suspend > 0 || BP_IS_HOLE(&zh->zh_log))) {
 		mutex_exit(&zilog->zl_lock);
+		mutex_exit(&zilog->zl_issuer_lock);
 		dmu_objset_rele(os, suspend_tag);
 		return (0);
 	}
@@ -3922,6 +3950,7 @@ zil_suspend(const char *osname, void **cookiep)
 	dsl_pool_rele(dmu_objset_pool(os), suspend_tag);
 
 	zilog->zl_suspend++;
+	mutex_exit(&zilog->zl_issuer_lock);
 
 	if (zilog->zl_suspend > 1) {
 		/*

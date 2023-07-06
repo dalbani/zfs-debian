@@ -1,4 +1,5 @@
 #unapplied/init-debian-openrc-workaround.patch # OpenRC users can apply this locally
+0001-Revert-Revert-systemd-Use-non-absolute-paths-in-Exec.patch
 1000-dont-symlink-zed-scripts.patch
 1001-Prevent-manual-builds-in-the-DKMS-source.patch
 1002-Check-for-META-and-DCH-consistency-in-autoconf.patch
@@ -24,9 +25,4 @@ ubuntu/4100-disable-bpool-upgrade.patch
 ubuntu/zfs-mount-container-start.patch
 ubuntu/4510-silently-ignore-modprobe-failure.patch
 ubuntu/4751-suppress-types.patch
-#0004-Increase-default-zfs_scan_vdev_limit-to-16MB.patch
-#0005-Increase-default-zfs_rebuild_vdev_limit-to-64MB.patch
-#0006-rootdelay-on-zfs-should-be-adaptive.patch
-#0009-zdb-zero-pad-checksum-output.patch
-#0010-zdb-zero-pad-checksum-output-follow-up.patch
 bash-completion.patch
