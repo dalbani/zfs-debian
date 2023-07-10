@@ -1,3 +1,9 @@
+zfs-linux (2.2.0~rc1-0ubuntu2) mantic; urgency=medium
+
+  * Fixup up new symbols.
+
+ -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Mon, 10 Jul 2023 11:08:38 +0100
+
 zfs-linux (2.2.0~rc1-0ubuntu1) mantic; urgency=medium
 
   * New upstream release.

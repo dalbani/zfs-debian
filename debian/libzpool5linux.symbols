@@ -374,8 +374,8 @@ libzpool.so.5 libzpool5linux #MINVER#
  (arch=amd64)blake3_avx512_impl@Base 2.1.99-0ubuntu1
  blake3_generic_impl@Base 2.1.99-0ubuntu1
  blake3_get_ops@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)blake3_sse2_impl@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)blake3_sse41_impl@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)blake3_sse2_impl@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)blake3_sse41_impl@Base 2.1.99-0ubuntu1
  bookmark_namecheck@Base 2.1
  bp_get_dsize@Base 0.8.2
  bp_get_dsize_sync@Base 0.8.2
@@ -2182,13 +2182,6 @@ libzpool.so.5 libzpool5linux #MINVER#
  vdev_autotrim_stop_all@Base 0.8.2
  vdev_autotrim_stop_wait@Base 0.8.2
  vdev_best_ashift@Base 2.1.6
- vdev_cache_fini@Base 0.8.2
- vdev_cache_init@Base 0.8.2
- vdev_cache_purge@Base 0.8.2
- vdev_cache_read@Base 0.8.2
- vdev_cache_stat_fini@Base 0.8.2
- vdev_cache_stat_init@Base 0.8.2
- vdev_cache_write@Base 0.8.2
  vdev_checkpoint_sm_object@Base 0.8.2
  vdev_children_are_offline@Base 0.8.2
  vdev_clear@Base 0.8.2
@@ -2345,6 +2338,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  vdev_propagate_state@Base 0.8.2
  vdev_psize_to_asize@Base 0.8.2
  vdev_queue_change_io_priority@Base 0.8.2
+ vdev_queue_class_length@Base 2.2.0~rc1
  vdev_queue_fini@Base 0.8.2
  vdev_queue_init@Base 0.8.2
  vdev_queue_io@Base 0.8.2
@@ -2870,15 +2864,15 @@ libzpool.so.5 libzpool5linux #MINVER#
  zfs_attr_table@Base 0.8.2
  zfs_basename@Base 2.1.99-0ubuntu1
  (arch=amd64)zfs_blake3_compress_in_place_avx512@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_compress_in_place_sse2@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_compress_in_place_sse41@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_compress_in_place_sse2@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_compress_in_place_sse41@Base 2.1.99-0ubuntu1
  (arch=amd64)zfs_blake3_compress_xof_avx512@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_compress_xof_sse2@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_compress_xof_sse41@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_compress_xof_sse2@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_compress_xof_sse41@Base 2.1.99-0ubuntu1
  (arch=amd64)zfs_blake3_hash_many_avx2@Base 2.1.99-0ubuntu1
  (arch=amd64)zfs_blake3_hash_many_avx512@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_hash_many_sse2@Base 2.1.99-0ubuntu1
- (arch=amd64,arm64)zfs_blake3_hash_many_sse41@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_hash_many_sse2@Base 2.1.99-0ubuntu1
+ (arch=amd64,arm64,ppc64el)zfs_blake3_hash_many_sse41@Base 2.1.99-0ubuntu1
  zfs_blake3_ops@Base 2.1.99-0ubuntu1
  zfs_blkptr_verify@Base 2.0
  zfs_brt_prefetch@Base 2.1.99-0ubuntu1
@@ -2971,6 +2965,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  zfs_fuid_table_load@Base 0.8.2
  zfs_get_enclosure_sysfs_path@Base 2.1.99-0ubuntu1
  zfs_get_underlying_path@Base 2.1.99-0ubuntu1
+ zfs_get_zplprop@Base 2.2.0~rc1
  zfs_history_event_names@Base 0.8.2
  zfs_impl_get_ops@Base 2.1.99-0ubuntu1
  zfs_isnumber@Base 2.1.99-0ubuntu1
@@ -3049,6 +3044,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  zfs_reconstruct_indirect_damage_fraction@Base 0.8.2
  zfs_recover@Base 0.8.2
  zfs_refcount_add@Base 2.0
+ zfs_refcount_add_few@Base 2.0
  zfs_refcount_add_many@Base 2.0
  zfs_refcount_count@Base 2.0
  zfs_refcount_create@Base 2.0
@@ -3062,6 +3058,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  zfs_refcount_is_zero@Base 2.0
  zfs_refcount_not_held@Base 2.0
  zfs_refcount_remove@Base 2.0
+ zfs_refcount_remove_few@Base 2.2.0~rc1
  zfs_refcount_remove_many@Base 2.0
  zfs_refcount_transfer@Base 2.0
  zfs_refcount_transfer_ownership@Base 2.0
@@ -3163,6 +3160,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  zil_suspend@Base 0.8.2
  zil_sync@Base 0.8.2
  zio_add_child@Base 0.8.2
+ zio_add_child_first@Base 2.2.0~rc1
  zio_alloc_zil@Base 0.8.2
  zio_bookmark_compare@Base 0.8.2
  zio_buf_alloc@Base 0.8.2
