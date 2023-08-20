@@ -29107,6 +29107,220 @@ fi
 
 
 
+test -d build/disk_check_media_change || mkdir -p build/disk_check_media_change
+cat confdefs.h - <<_ACEOF >build/disk_check_media_change/disk_check_media_change.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		struct block_device *bdev = NULL;
+		bool error;
+
+		error = disk_check_media_change(bdev->bd_disk);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/disk_check_media_change || mkdir -p build/disk_check_media_change
+
+	file=build/disk_check_media_change/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/disk_check_media_change
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := disk_check_media_change.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += disk_check_media_change/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/disk_check_media_change_license || mkdir -p build/disk_check_media_change_license
+cat confdefs.h - <<_ACEOF >build/disk_check_media_change_license/disk_check_media_change_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		struct block_device *bdev = NULL;
+		bool error;
+
+		error = disk_check_media_change(bdev->bd_disk);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/disk_check_media_change_license || mkdir -p build/disk_check_media_change_license
+
+	file=build/disk_check_media_change_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/disk_check_media_change_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := disk_check_media_change_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += disk_check_media_change_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/blk_sts_resv_conflict || mkdir -p build/blk_sts_resv_conflict
+cat confdefs.h - <<_ACEOF >build/blk_sts_resv_conflict/blk_sts_resv_conflict.c
+
+#include <linux/module.h>
+
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		blk_status_t s __attribute__ ((unused)) = BLK_STS_RESV_CONFLICT;
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/blk_sts_resv_conflict || mkdir -p build/blk_sts_resv_conflict
+
+	file=build/blk_sts_resv_conflict/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/blk_sts_resv_conflict
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := blk_sts_resv_conflict.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += blk_sts_resv_conflict/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/blk_sts_resv_conflict_license || mkdir -p build/blk_sts_resv_conflict_license
+cat confdefs.h - <<_ACEOF >build/blk_sts_resv_conflict_license/blk_sts_resv_conflict_license.c
+
+#include <linux/module.h>
+
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		blk_status_t s __attribute__ ((unused)) = BLK_STS_RESV_CONFLICT;
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/blk_sts_resv_conflict_license || mkdir -p build/blk_sts_resv_conflict_license
+
+	file=build/blk_sts_resv_conflict_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/blk_sts_resv_conflict_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := blk_sts_resv_conflict_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += blk_sts_resv_conflict_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
 
 
 test -d build/blk_plug || mkdir -p build/blk_plug
@@ -46004,6 +46218,780 @@ fi
 
 
 
+test -d build/vfs_copy_file_range || mkdir -p build/vfs_copy_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_copy_file_range/vfs_copy_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.copy_file_range	= test_copy_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_copy_file_range || mkdir -p build/vfs_copy_file_range
+
+	file=build/vfs_copy_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_copy_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_copy_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_copy_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_copy_file_range_license || mkdir -p build/vfs_copy_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_copy_file_range_license/vfs_copy_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.copy_file_range	= test_copy_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_copy_file_range_license || mkdir -p build/vfs_copy_file_range_license
+
+	file=build/vfs_copy_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_copy_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_copy_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_copy_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/generic_copy_file_range || mkdir -p build/generic_copy_file_range
+cat confdefs.h - <<_ACEOF >build/generic_copy_file_range/generic_copy_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+
+int
+main (void)
+{
+
+		struct file *src_file __attribute__ ((unused)) = NULL;
+		loff_t src_off __attribute__ ((unused)) = 0;
+		struct file *dst_file __attribute__ ((unused)) = NULL;
+		loff_t dst_off __attribute__ ((unused)) = 0;
+		size_t len __attribute__ ((unused)) = 0;
+		unsigned int flags __attribute__ ((unused)) = 0;
+		generic_copy_file_range(src_file, src_off, dst_file, dst_off,
+		    len, flags);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/generic_copy_file_range || mkdir -p build/generic_copy_file_range
+
+	file=build/generic_copy_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/generic_copy_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := generic_copy_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += generic_copy_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/generic_copy_file_range_license || mkdir -p build/generic_copy_file_range_license
+cat confdefs.h - <<_ACEOF >build/generic_copy_file_range_license/generic_copy_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+
+int
+main (void)
+{
+
+		struct file *src_file __attribute__ ((unused)) = NULL;
+		loff_t src_off __attribute__ ((unused)) = 0;
+		struct file *dst_file __attribute__ ((unused)) = NULL;
+		loff_t dst_off __attribute__ ((unused)) = 0;
+		size_t len __attribute__ ((unused)) = 0;
+		unsigned int flags __attribute__ ((unused)) = 0;
+		generic_copy_file_range(src_file, src_off, dst_file, dst_off,
+		    len, flags);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/generic_copy_file_range_license || mkdir -p build/generic_copy_file_range_license
+
+	file=build/generic_copy_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/generic_copy_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := generic_copy_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += generic_copy_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_remap_file_range || mkdir -p build/vfs_remap_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_remap_file_range/vfs_remap_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static loff_t test_remap_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    loff_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.remap_file_range	= test_remap_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_remap_file_range || mkdir -p build/vfs_remap_file_range
+
+	file=build/vfs_remap_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_remap_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_remap_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_remap_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_remap_file_range_license || mkdir -p build/vfs_remap_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_remap_file_range_license/vfs_remap_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static loff_t test_remap_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    loff_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.remap_file_range	= test_remap_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_remap_file_range_license || mkdir -p build/vfs_remap_file_range_license
+
+	file=build/vfs_remap_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_remap_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_remap_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_remap_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_clone_file_range || mkdir -p build/vfs_clone_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_clone_file_range/vfs_clone_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.clone_file_range	= test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_clone_file_range || mkdir -p build/vfs_clone_file_range
+
+	file=build/vfs_clone_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_clone_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_clone_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_clone_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_clone_file_range_license || mkdir -p build/vfs_clone_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_clone_file_range_license/vfs_clone_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.clone_file_range	= test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_clone_file_range_license || mkdir -p build/vfs_clone_file_range_license
+
+	file=build/vfs_clone_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_clone_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_clone_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_clone_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_dedupe_file_range || mkdir -p build/vfs_dedupe_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_dedupe_file_range/vfs_dedupe_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_dedupe_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+                .dedupe_file_range	= test_dedupe_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_dedupe_file_range || mkdir -p build/vfs_dedupe_file_range
+
+	file=build/vfs_dedupe_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_dedupe_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_dedupe_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_dedupe_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_dedupe_file_range_license || mkdir -p build/vfs_dedupe_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_dedupe_file_range_license/vfs_dedupe_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_dedupe_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+                .dedupe_file_range	= test_dedupe_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_dedupe_file_range_license || mkdir -p build/vfs_dedupe_file_range_license
+
+	file=build/vfs_dedupe_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_dedupe_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_dedupe_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_dedupe_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_file_operations_extend || mkdir -p build/vfs_file_operations_extend
+cat confdefs.h - <<_ACEOF >build/vfs_file_operations_extend/vfs_file_operations_extend.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations_extend
+		    fops __attribute__ ((unused)) = {
+			.kabi_fops = {},
+			.copy_file_range = test_copy_file_range,
+			.clone_file_range = test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_file_operations_extend || mkdir -p build/vfs_file_operations_extend
+
+	file=build/vfs_file_operations_extend/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_file_operations_extend
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_file_operations_extend.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_file_operations_extend/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_file_operations_extend_license || mkdir -p build/vfs_file_operations_extend_license
+cat confdefs.h - <<_ACEOF >build/vfs_file_operations_extend_license/vfs_file_operations_extend_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations_extend
+		    fops __attribute__ ((unused)) = {
+			.kabi_fops = {},
+			.copy_file_range = test_copy_file_range,
+			.clone_file_range = test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_file_operations_extend_license || mkdir -p build/vfs_file_operations_extend_license
+
+	file=build/vfs_file_operations_extend_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_file_operations_extend_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_file_operations_extend_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_file_operations_extend_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
 test -d build/kmap_atomic || mkdir -p build/kmap_atomic
 cat confdefs.h - <<_ACEOF >build/kmap_atomic/kmap_atomic.c
 
@@ -56658,6 +57646,68 @@ fi
 
 
 
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether disk_check_media_change() exists" >&5
+$as_echo_n "checking whether disk_check_media_change() exists... " >&6; }
+
+	if test -d build/disk_check_media_change; then :
+
+		if test -f build/disk_check_media_change/disk_check_media_change.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_DISK_CHECK_MEDIA_CHANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"disk_check_media_change\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether BLK_STS_RESV_CONFLICT is defined" >&5
+$as_echo_n "checking whether BLK_STS_RESV_CONFLICT is defined... " >&6; }
+
+	if test -d build/blk_sts_resv_conflict; then :
+
+		if test -f build/blk_sts_resv_conflict/blk_sts_resv_conflict.ko; then :
+
+
+$as_echo "#define HAVE_BLK_STS_RESV_CONFLICT 1" >>confdefs.h
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+else
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"blk_sts_resv_conflict\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether struct blk_plug is available" >&5
@@ -63168,6 +64218,233 @@ $as_echo "#define HAVE_VFS_IOV_ITER 1" >>confdefs.h
 
 
 fi
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->copy_file_range() is available" >&5
+$as_echo_n "checking whether fops->copy_file_range() is available... " >&6; }
+
+	if test -d build/vfs_copy_file_range; then :
+
+		if test -f build/vfs_copy_file_range/vfs_copy_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_copy_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether generic_copy_file_range() is available" >&5
+$as_echo_n "checking whether generic_copy_file_range() is available... " >&6; }
+
+	if  ! test -f build/generic_copy_file_range/generic_copy_file_range.ko; then :
+
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+
+else
+
+		if test "x$enable_linux_builtin" != "xyes"; then :
+
+
+	grep -q -E '[[:space:]]generic_copy_file_range[[:space:]]' \
+		$LINUX_OBJ/$LINUX_SYMBOLS 2>/dev/null
+	rc=$?
+	if test $rc -ne 0; then
+		export=0
+		for file in fs/read_write.c; do
+			grep -q -E "EXPORT_SYMBOL.*(generic_copy_file_range)" \
+				"$LINUX/$file" 2>/dev/null
+			rc=$?
+			if test $rc -eq 0; then
+				export=1
+				break;
+			fi
+		done
+		if test $export -eq 0; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+		else :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+		fi
+	else :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+	fi
+
+
+else
+
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+
+fi
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->remap_file_range() is available" >&5
+$as_echo_n "checking whether fops->remap_file_range() is available... " >&6; }
+
+	if test -d build/vfs_remap_file_range; then :
+
+		if test -f build/vfs_remap_file_range/vfs_remap_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_REMAP_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_remap_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->clone_file_range() is available" >&5
+$as_echo_n "checking whether fops->clone_file_range() is available... " >&6; }
+
+	if test -d build/vfs_clone_file_range; then :
+
+		if test -f build/vfs_clone_file_range/vfs_clone_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_CLONE_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_clone_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->dedupe_file_range() is available" >&5
+$as_echo_n "checking whether fops->dedupe_file_range() is available... " >&6; }
+
+	if test -d build/vfs_dedupe_file_range; then :
+
+		if test -f build/vfs_dedupe_file_range/vfs_dedupe_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_DEDUPE_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_dedupe_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether file_operations_extend takes \
+.copy_file_range() and .clone_file_range()" >&5
+$as_echo_n "checking whether file_operations_extend takes \
+.copy_file_range() and .clone_file_range()... " >&6; }
+
+	if test -d build/vfs_file_operations_extend; then :
+
+		if test -f build/vfs_file_operations_extend/vfs_file_operations_extend.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_FILE_OPERATIONS_EXTEND 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_file_operations_extend\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether kmap_atomic wants 1 args" >&5
@@ -84719,6 +85996,220 @@ fi
 
 
 
+test -d build/disk_check_media_change || mkdir -p build/disk_check_media_change
+cat confdefs.h - <<_ACEOF >build/disk_check_media_change/disk_check_media_change.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		struct block_device *bdev = NULL;
+		bool error;
+
+		error = disk_check_media_change(bdev->bd_disk);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/disk_check_media_change || mkdir -p build/disk_check_media_change
+
+	file=build/disk_check_media_change/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/disk_check_media_change
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := disk_check_media_change.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += disk_check_media_change/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/disk_check_media_change_license || mkdir -p build/disk_check_media_change_license
+cat confdefs.h - <<_ACEOF >build/disk_check_media_change_license/disk_check_media_change_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		struct block_device *bdev = NULL;
+		bool error;
+
+		error = disk_check_media_change(bdev->bd_disk);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/disk_check_media_change_license || mkdir -p build/disk_check_media_change_license
+
+	file=build/disk_check_media_change_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/disk_check_media_change_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := disk_check_media_change_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += disk_check_media_change_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/blk_sts_resv_conflict || mkdir -p build/blk_sts_resv_conflict
+cat confdefs.h - <<_ACEOF >build/blk_sts_resv_conflict/blk_sts_resv_conflict.c
+
+#include <linux/module.h>
+
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		blk_status_t s __attribute__ ((unused)) = BLK_STS_RESV_CONFLICT;
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/blk_sts_resv_conflict || mkdir -p build/blk_sts_resv_conflict
+
+	file=build/blk_sts_resv_conflict/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/blk_sts_resv_conflict
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := blk_sts_resv_conflict.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += blk_sts_resv_conflict/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/blk_sts_resv_conflict_license || mkdir -p build/blk_sts_resv_conflict_license
+cat confdefs.h - <<_ACEOF >build/blk_sts_resv_conflict_license/blk_sts_resv_conflict_license.c
+
+#include <linux/module.h>
+
+		#include <linux/blkdev.h>
+
+
+int
+main (void)
+{
+
+		blk_status_t s __attribute__ ((unused)) = BLK_STS_RESV_CONFLICT;
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/blk_sts_resv_conflict_license || mkdir -p build/blk_sts_resv_conflict_license
+
+	file=build/blk_sts_resv_conflict_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/blk_sts_resv_conflict_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := blk_sts_resv_conflict_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += blk_sts_resv_conflict_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
 
 
 test -d build/blk_plug || mkdir -p build/blk_plug
@@ -101616,6 +103107,780 @@ fi
 
 
 
+test -d build/vfs_copy_file_range || mkdir -p build/vfs_copy_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_copy_file_range/vfs_copy_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.copy_file_range	= test_copy_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_copy_file_range || mkdir -p build/vfs_copy_file_range
+
+	file=build/vfs_copy_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_copy_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_copy_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_copy_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_copy_file_range_license || mkdir -p build/vfs_copy_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_copy_file_range_license/vfs_copy_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.copy_file_range	= test_copy_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_copy_file_range_license || mkdir -p build/vfs_copy_file_range_license
+
+	file=build/vfs_copy_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_copy_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_copy_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_copy_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/generic_copy_file_range || mkdir -p build/generic_copy_file_range
+cat confdefs.h - <<_ACEOF >build/generic_copy_file_range/generic_copy_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+
+int
+main (void)
+{
+
+		struct file *src_file __attribute__ ((unused)) = NULL;
+		loff_t src_off __attribute__ ((unused)) = 0;
+		struct file *dst_file __attribute__ ((unused)) = NULL;
+		loff_t dst_off __attribute__ ((unused)) = 0;
+		size_t len __attribute__ ((unused)) = 0;
+		unsigned int flags __attribute__ ((unused)) = 0;
+		generic_copy_file_range(src_file, src_off, dst_file, dst_off,
+		    len, flags);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/generic_copy_file_range || mkdir -p build/generic_copy_file_range
+
+	file=build/generic_copy_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/generic_copy_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := generic_copy_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += generic_copy_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/generic_copy_file_range_license || mkdir -p build/generic_copy_file_range_license
+cat confdefs.h - <<_ACEOF >build/generic_copy_file_range_license/generic_copy_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+
+int
+main (void)
+{
+
+		struct file *src_file __attribute__ ((unused)) = NULL;
+		loff_t src_off __attribute__ ((unused)) = 0;
+		struct file *dst_file __attribute__ ((unused)) = NULL;
+		loff_t dst_off __attribute__ ((unused)) = 0;
+		size_t len __attribute__ ((unused)) = 0;
+		unsigned int flags __attribute__ ((unused)) = 0;
+		generic_copy_file_range(src_file, src_off, dst_file, dst_off,
+		    len, flags);
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/generic_copy_file_range_license || mkdir -p build/generic_copy_file_range_license
+
+	file=build/generic_copy_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/generic_copy_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := generic_copy_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += generic_copy_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_remap_file_range || mkdir -p build/vfs_remap_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_remap_file_range/vfs_remap_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static loff_t test_remap_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    loff_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.remap_file_range	= test_remap_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_remap_file_range || mkdir -p build/vfs_remap_file_range
+
+	file=build/vfs_remap_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_remap_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_remap_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_remap_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_remap_file_range_license || mkdir -p build/vfs_remap_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_remap_file_range_license/vfs_remap_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static loff_t test_remap_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    loff_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.remap_file_range	= test_remap_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_remap_file_range_license || mkdir -p build/vfs_remap_file_range_license
+
+	file=build/vfs_remap_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_remap_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_remap_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_remap_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_clone_file_range || mkdir -p build/vfs_clone_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_clone_file_range/vfs_clone_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.clone_file_range	= test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_clone_file_range || mkdir -p build/vfs_clone_file_range
+
+	file=build/vfs_clone_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_clone_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_clone_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_clone_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_clone_file_range_license || mkdir -p build/vfs_clone_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_clone_file_range_license/vfs_clone_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+			.clone_file_range	= test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_clone_file_range_license || mkdir -p build/vfs_clone_file_range_license
+
+	file=build/vfs_clone_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_clone_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_clone_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_clone_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_dedupe_file_range || mkdir -p build/vfs_dedupe_file_range
+cat confdefs.h - <<_ACEOF >build/vfs_dedupe_file_range/vfs_dedupe_file_range.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_dedupe_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+                .dedupe_file_range	= test_dedupe_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_dedupe_file_range || mkdir -p build/vfs_dedupe_file_range
+
+	file=build/vfs_dedupe_file_range/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_dedupe_file_range
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_dedupe_file_range.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_dedupe_file_range/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_dedupe_file_range_license || mkdir -p build/vfs_dedupe_file_range_license
+cat confdefs.h - <<_ACEOF >build/vfs_dedupe_file_range_license/vfs_dedupe_file_range_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static int test_dedupe_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations
+		    fops __attribute__ ((unused)) = {
+                .dedupe_file_range	= test_dedupe_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_dedupe_file_range_license || mkdir -p build/vfs_dedupe_file_range_license
+
+	file=build/vfs_dedupe_file_range_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_dedupe_file_range_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_dedupe_file_range_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_dedupe_file_range_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
+test -d build/vfs_file_operations_extend || mkdir -p build/vfs_file_operations_extend
+cat confdefs.h - <<_ACEOF >build/vfs_file_operations_extend/vfs_file_operations_extend.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations_extend
+		    fops __attribute__ ((unused)) = {
+			.kabi_fops = {},
+			.copy_file_range = test_copy_file_range,
+			.clone_file_range = test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE("Dual BSD/GPL");
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_file_operations_extend || mkdir -p build/vfs_file_operations_extend
+
+	file=build/vfs_file_operations_extend/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_file_operations_extend
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_file_operations_extend.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_file_operations_extend/" >>build/Makefile
+fi
+
+
+	if  test -n "" ; then :
+
+
+test -d build/vfs_file_operations_extend_license || mkdir -p build/vfs_file_operations_extend_license
+cat confdefs.h - <<_ACEOF >build/vfs_file_operations_extend_license/vfs_file_operations_extend_license.c
+
+#include <linux/module.h>
+
+		#include <linux/fs.h>
+
+		static ssize_t test_copy_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    size_t len, unsigned int flags) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len; (void) flags;
+			return (0);
+		}
+
+		static int test_clone_file_range(struct file *src_file,
+		    loff_t src_off, struct file *dst_file, loff_t dst_off,
+		    u64 len) {
+			(void) src_file; (void) src_off;
+			(void) dst_file; (void) dst_off;
+			(void) len;
+			return (0);
+		}
+
+		static const struct file_operations_extend
+		    fops __attribute__ ((unused)) = {
+			.kabi_fops = {},
+			.copy_file_range = test_copy_file_range,
+			.clone_file_range = test_clone_file_range,
+		};
+
+
+int
+main (void)
+{
+
+	;
+	return 0;
+}
+
+MODULE_DESCRIPTION("conftest");
+MODULE_AUTHOR(ZFS_META_AUTHOR);
+MODULE_VERSION(ZFS_META_VERSION "-" ZFS_META_RELEASE);
+MODULE_LICENSE();
+
+_ACEOF
+
+
+	test -d build || mkdir -p build
+	test -d build/vfs_file_operations_extend_license || mkdir -p build/vfs_file_operations_extend_license
+
+	file=build/vfs_file_operations_extend_license/Makefile
+
+		cat - <<_ACEOF >$file
+# Example command line to manually build source
+# make modules -C $LINUX_OBJ $ARCH_UM M=$PWD/build/vfs_file_operations_extend_license
+
+ccflags-y := -Werror $FRAME_LARGER_THAN
+_ACEOF
+
+
+
+		echo "obj-m := vfs_file_operations_extend_license.o" >>$file
+
+	if test "xyes" = "xyes"; then :
+  echo "obj-m += vfs_file_operations_extend_license/" >>build/Makefile
+fi
+
+
+fi
+
+
+
+
+
 test -d build/kmap_atomic || mkdir -p build/kmap_atomic
 cat confdefs.h - <<_ACEOF >build/kmap_atomic/kmap_atomic.c
 
@@ -112270,6 +114535,68 @@ fi
 
 
 
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether disk_check_media_change() exists" >&5
+$as_echo_n "checking whether disk_check_media_change() exists... " >&6; }
+
+	if test -d build/disk_check_media_change; then :
+
+		if test -f build/disk_check_media_change/disk_check_media_change.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_DISK_CHECK_MEDIA_CHANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"disk_check_media_change\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether BLK_STS_RESV_CONFLICT is defined" >&5
+$as_echo_n "checking whether BLK_STS_RESV_CONFLICT is defined... " >&6; }
+
+	if test -d build/blk_sts_resv_conflict; then :
+
+		if test -f build/blk_sts_resv_conflict/blk_sts_resv_conflict.ko; then :
+
+
+$as_echo "#define HAVE_BLK_STS_RESV_CONFLICT 1" >>confdefs.h
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+else
+
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"blk_sts_resv_conflict\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether struct blk_plug is available" >&5
@@ -118780,6 +121107,233 @@ $as_echo "#define HAVE_VFS_IOV_ITER 1" >>confdefs.h
 
 
 fi
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->copy_file_range() is available" >&5
+$as_echo_n "checking whether fops->copy_file_range() is available... " >&6; }
+
+	if test -d build/vfs_copy_file_range; then :
+
+		if test -f build/vfs_copy_file_range/vfs_copy_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_copy_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether generic_copy_file_range() is available" >&5
+$as_echo_n "checking whether generic_copy_file_range() is available... " >&6; }
+
+	if  ! test -f build/generic_copy_file_range/generic_copy_file_range.ko; then :
+
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+
+else
+
+		if test "x$enable_linux_builtin" != "xyes"; then :
+
+
+	grep -q -E '[[:space:]]generic_copy_file_range[[:space:]]' \
+		$LINUX_OBJ/$LINUX_SYMBOLS 2>/dev/null
+	rc=$?
+	if test $rc -ne 0; then
+		export=0
+		for file in fs/read_write.c; do
+			grep -q -E "EXPORT_SYMBOL.*(generic_copy_file_range)" \
+				"$LINUX/$file" 2>/dev/null
+			rc=$?
+			if test $rc -eq 0; then
+				export=1
+				break;
+			fi
+		done
+		if test $export -eq 0; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+		else :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+		fi
+	else :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+	fi
+
+
+else
+
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_GENERIC_COPY_FILE_RANGE 1" >>confdefs.h
+
+
+
+fi
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->remap_file_range() is available" >&5
+$as_echo_n "checking whether fops->remap_file_range() is available... " >&6; }
+
+	if test -d build/vfs_remap_file_range; then :
+
+		if test -f build/vfs_remap_file_range/vfs_remap_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_REMAP_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_remap_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->clone_file_range() is available" >&5
+$as_echo_n "checking whether fops->clone_file_range() is available... " >&6; }
+
+	if test -d build/vfs_clone_file_range; then :
+
+		if test -f build/vfs_clone_file_range/vfs_clone_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_CLONE_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_clone_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether fops->dedupe_file_range() is available" >&5
+$as_echo_n "checking whether fops->dedupe_file_range() is available... " >&6; }
+
+	if test -d build/vfs_dedupe_file_range; then :
+
+		if test -f build/vfs_dedupe_file_range/vfs_dedupe_file_range.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_DEDUPE_FILE_RANGE 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_dedupe_file_range\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
+
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether file_operations_extend takes \
+.copy_file_range() and .clone_file_range()" >&5
+$as_echo_n "checking whether file_operations_extend takes \
+.copy_file_range() and .clone_file_range()... " >&6; }
+
+	if test -d build/vfs_file_operations_extend; then :
+
+		if test -f build/vfs_file_operations_extend/vfs_file_operations_extend.ko; then :
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+$as_echo "#define HAVE_VFS_FILE_OPERATIONS_EXTEND 1" >>confdefs.h
+
+
+else
+
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+fi
+
+else
+
+		as_fn_error $? "
+	*** No matching source for the \"vfs_file_operations_extend\" test, check that
+	*** both the test source and result macros refer to the same name.
+		" "$LINENO" 5
+
+fi
+
 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether kmap_atomic wants 1 args" >&5

@@ -1539,6 +1539,7 @@ libzpool.so.5 libzpool5linux #MINVER#
  metaslab_fini@Base 0.8.2
  metaslab_flush@Base 2.0
  metaslab_force_ganging@Base 0.8.2
+ metaslab_force_ganging_pct@Base 2.2.0~rc3
  metaslab_free@Base 0.8.2
  metaslab_free_concrete@Base 0.8.2
  metaslab_free_dva@Base 0.8.2
@@ -2086,8 +2087,6 @@ libzpool.so.5 libzpool5linux #MINVER#
  spl_fstrans_mark@Base 0.8.2
  spl_fstrans_unmark@Base 0.8.2
  spl_pagesize@Base 2.1.99-0ubuntu1
- strlcat@Base 2.1.99-0ubuntu1
- strlcpy@Base 2.1.99-0ubuntu1
  svr_sync@Base 0.8.2
  sync_error_list@Base 2.1.99-0ubuntu1
  system_delay_taskq@Base 0.8.2
@@ -2525,7 +2524,6 @@ libzpool.so.5 libzpool5linux #MINVER#
  zfeature_is_valid_guid@Base 0.8.2
  zfeature_lookup_guid@Base 0.8.2
  zfeature_lookup_name@Base 0.8.2
- zfetch_array_rd_sz@Base 0.8.2
  zfetch_fini@Base 0.8.2
  zfetch_init@Base 0.8.2
  zfetch_max_distance@Base 0.8.2

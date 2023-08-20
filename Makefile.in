@@ -29,6 +29,7 @@
 # Not following: a was not specified as input (see shellcheck -x). [SC1091]
 # Prefer putting braces around variable references even when not strictly required. [SC2250]
 # Consider invoking this command separately to avoid masking its return value (or use '|| true' to ignore). [SC2312]
+# Command appears to be unreachable. Check usage (or ignore if invoked indirectly). [SC2317]
 # In POSIX sh, 'local' is undefined. [SC2039] # older ShellCheck versions
 # In POSIX sh, 'local' is undefined. [SC3043] # newer ShellCheck versions
 
@@ -465,6 +466,7 @@ target_triplet = @target@
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/xattrtest \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/zed_fd_spill-zedlet \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/idmap_util \
+@BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/clonefile \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/read_dos_attributes \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/write_dos_attributes \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/randfree_file \
@@ -612,6 +614,8 @@ am__aclocal_m4_deps = $(top_srcdir)/config/always-arch.m4 \
 	$(top_srcdir)/config/kernel-userns-capabilities.m4 \
 	$(top_srcdir)/config/kernel-usleep_range.m4 \
 	$(top_srcdir)/config/kernel-vfs-direct_IO.m4 \
+	$(top_srcdir)/config/kernel-vfs-extended-file_range.m4 \
+	$(top_srcdir)/config/kernel-vfs-file_range.m4 \
 	$(top_srcdir)/config/kernel-vfs-filemap_dirty_folio.m4 \
 	$(top_srcdir)/config/kernel-vfs-fsync.m4 \
 	$(top_srcdir)/config/kernel-vfs-getattr.m4 \
@@ -746,6 +750,7 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(mounthelperdir)" \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/xattrtest$(EXEEXT) \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/zed_fd_spill-zedlet$(EXEEXT) \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/idmap_util$(EXEEXT) \
+@BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/clonefile$(EXEEXT) \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/read_dos_attributes$(EXEEXT) \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/write_dos_attributes$(EXEEXT) \
 @BUILD_LINUX_TRUE@@CONFIG_USER_TRUE@	tests/zfs-tests/cmd/randfree_file$(EXEEXT) \
@@ -1398,6 +1403,11 @@ tests_zfs_tests_cmd_chg_usr_exec_SOURCES =  \
 tests_zfs_tests_cmd_chg_usr_exec_OBJECTS =  \
 	tests/zfs-tests/cmd/chg_usr_exec.$(OBJEXT)
 tests_zfs_tests_cmd_chg_usr_exec_LDADD = $(LDADD)
+tests_zfs_tests_cmd_clonefile_SOURCES =  \
+	tests/zfs-tests/cmd/clonefile.c
+tests_zfs_tests_cmd_clonefile_OBJECTS =  \
+	tests/zfs-tests/cmd/clonefile.$(OBJEXT)
+tests_zfs_tests_cmd_clonefile_LDADD = $(LDADD)
 tests_zfs_tests_cmd_cp_files_SOURCES = tests/zfs-tests/cmd/cp_files.c
 tests_zfs_tests_cmd_cp_files_OBJECTS =  \
 	tests/zfs-tests/cmd/cp_files.$(OBJEXT)
@@ -2285,6 +2295,7 @@ am__depfiles_remade = cmd/$(DEPDIR)/mount_zfs.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/badsend.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/btree_test-btree_test.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/chg_usr_exec.Po \
+	tests/zfs-tests/cmd/$(DEPDIR)/clonefile.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/cp_files.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/ctime.Po \
 	tests/zfs-tests/cmd/$(DEPDIR)/devname2devid-devname2devid.Po \
@@ -2388,7 +2399,8 @@ SOURCES = $(contrib_pam_zfs_key_pam_zfs_key_la_SOURCES) \
 	$(tests_zfs_tests_cmd_blake3_test_SOURCES) \
 	tests/zfs-tests/cmd/btree_test.c \
 	tests/zfs-tests/cmd/chg_usr_exec.c \
-	tests/zfs-tests/cmd/cp_files.c tests/zfs-tests/cmd/ctime.c \
+	tests/zfs-tests/cmd/clonefile.c tests/zfs-tests/cmd/cp_files.c \
+	tests/zfs-tests/cmd/ctime.c \
 	tests/zfs-tests/cmd/devname2devid.c \
 	tests/zfs-tests/cmd/dir_rd_update.c \
 	tests/zfs-tests/cmd/dosmode_readonly_write.c \
@@ -2461,7 +2473,8 @@ DIST_SOURCES = $(am__contrib_pam_zfs_key_pam_zfs_key_la_SOURCES_DIST) \
 	$(am__tests_zfs_tests_cmd_blake3_test_SOURCES_DIST) \
 	tests/zfs-tests/cmd/btree_test.c \
 	tests/zfs-tests/cmd/chg_usr_exec.c \
-	tests/zfs-tests/cmd/cp_files.c tests/zfs-tests/cmd/ctime.c \
+	tests/zfs-tests/cmd/clonefile.c tests/zfs-tests/cmd/cp_files.c \
+	tests/zfs-tests/cmd/ctime.c \
 	tests/zfs-tests/cmd/devname2devid.c \
 	tests/zfs-tests/cmd/dir_rd_update.c \
 	tests/zfs-tests/cmd/dosmode_readonly_write.c \
@@ -6550,6 +6563,13 @@ tests/zfs-tests/cmd/chg_usr_exec.$(OBJEXT):  \
 tests/zfs-tests/cmd/chg_usr_exec$(EXEEXT): $(tests_zfs_tests_cmd_chg_usr_exec_OBJECTS) $(tests_zfs_tests_cmd_chg_usr_exec_DEPENDENCIES) $(EXTRA_tests_zfs_tests_cmd_chg_usr_exec_DEPENDENCIES) tests/zfs-tests/cmd/$(am__dirstamp)
 	@rm -f tests/zfs-tests/cmd/chg_usr_exec$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(tests_zfs_tests_cmd_chg_usr_exec_OBJECTS) $(tests_zfs_tests_cmd_chg_usr_exec_LDADD) $(LIBS)
+tests/zfs-tests/cmd/clonefile.$(OBJEXT):  \
+	tests/zfs-tests/cmd/$(am__dirstamp) \
+	tests/zfs-tests/cmd/$(DEPDIR)/$(am__dirstamp)
+
+tests/zfs-tests/cmd/clonefile$(EXEEXT): $(tests_zfs_tests_cmd_clonefile_OBJECTS) $(tests_zfs_tests_cmd_clonefile_DEPENDENCIES) $(EXTRA_tests_zfs_tests_cmd_clonefile_DEPENDENCIES) tests/zfs-tests/cmd/$(am__dirstamp)
+	@rm -f tests/zfs-tests/cmd/clonefile$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(tests_zfs_tests_cmd_clonefile_OBJECTS) $(tests_zfs_tests_cmd_clonefile_LDADD) $(LIBS)
 tests/zfs-tests/cmd/cp_files.$(OBJEXT):  \
 	tests/zfs-tests/cmd/$(am__dirstamp) \
 	tests/zfs-tests/cmd/$(DEPDIR)/$(am__dirstamp)
@@ -8276,6 +8296,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/badsend.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/btree_test-btree_test.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/chg_usr_exec.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/clonefile.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/cp_files.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/ctime.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/zfs-tests/cmd/$(DEPDIR)/devname2devid-devname2devid.Po@am__quote@ # am--include-marker
@@ -12954,6 +12975,7 @@ distclean: distclean-recursive
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/badsend.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/btree_test-btree_test.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/chg_usr_exec.Po
+	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/clonefile.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/cp_files.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/ctime.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/devname2devid-devname2devid.Po
@@ -13483,6 +13505,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/badsend.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/btree_test-btree_test.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/chg_usr_exec.Po
+	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/clonefile.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/cp_files.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/ctime.Po
 	-rm -f tests/zfs-tests/cmd/$(DEPDIR)/devname2devid-devname2devid.Po
@@ -13712,7 +13735,7 @@ cppcheck-for-%:
 
 cppcheck: $(addprefix cppcheck-for-,$(subst -,_,$(subst .,_,$(subst /,_,$(CPPCHECKTARGETS))))) $(addprefix cppcheck-recursive-,$(CPPCHECKDIRS))
 shellcheck-here-%:
-@HAVE_SHELLCHECK_TRUE@	shellcheck --format=gcc --enable=all --exclude=SC1090,SC1091,SC2039,SC2250,SC2312,SC3043 $$([ -n "$(SHELLCHECK_SHELL)" ] && echo "--shell=$(SHELLCHECK_SHELL)") "$$([ -e "$(_STGT)" ] || echo "$(srcdir)/")$(_STGT)"
+@HAVE_SHELLCHECK_TRUE@	shellcheck --format=gcc --enable=all --exclude=SC1090,SC1091,SC2039,SC2250,SC2312,SC2317,SC3043 $$([ -n "$(SHELLCHECK_SHELL)" ] && echo "--shell=$(SHELLCHECK_SHELL)") "$$([ -e "$(_STGT)" ] || echo "$(srcdir)/")$(_STGT)"
 @HAVE_SHELLCHECK_FALSE@	@echo "skipping shellcheck of" $(_STGT) "because shellcheck is not installed"
 
 shellcheck: $(SHELLCHECKSCRIPTS) $(call JUST_SHELLCHECK_OPTS,$(SHELLCHECKSCRIPTS))
