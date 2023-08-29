@@ -35,3 +35,4 @@ ubuntu/4510-silently-ignore-modprobe-failure.patch
 ubuntu/4751-suppress-types.patch
 bash-completion.patch
 fixup-abi.patch
+4630-ubsan-Support-varlen-arrays-at-end-of-struct-as-1-or.patch

@@ -1,3 +1,10 @@
+zfs-linux (2.2.0~rc3-0ubuntu2) mantic; urgency=medium
+
+  * Fix UBSAN array-index-out-of-bounds warnings (LP: #2033385):
+    - debian/patches/4630-ubsan-Support-varlen-arrays-at-end-of-struct-as-1-or.patch
+
+ -- Andrea Righi <andrea.righi@canonical.com>  Tue, 29 Aug 2023 09:37:56 +0000
+
 zfs-linux (2.2.0~rc3-0ubuntu1) mantic; urgency=medium
 
   * New upstream release.
