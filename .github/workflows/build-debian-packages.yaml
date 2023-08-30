@@ -1,0 +1,137 @@
+name: Build ZFS packages and deploy them to APT repository
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+permissions:
+  contents: write
+jobs:
+  build:
+    name: Build ZFS packages
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target-os: debian, target-os-release: bookworm }
+          - { target-os: ubuntu, target-os-release: jammy }
+    runs-on: ubuntu-22.04
+    container:
+      image: ${{ matrix.target-os }}:${{ matrix.target-os-release }}
+      volumes:
+        - ${{ github.workspace }}:/github/workspace
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Build ZFS packages
+        shell: bash
+        working-directory: ${{ github.workspace }}
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          apt-get -yq update
+          apt-get -yq install devscripts dpkg-dev equivs
+          # append "-y" to the default arguments used by "mk-build-deps"
+          mk-build-deps -i -t "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends -yq"
+          # disabled patch targeted at compatibility with Ubuntu Mantic 
+          sed -e 's/^fixup-abi.patch/#&/' -i debian/patches/series
+          dpkg-buildpackage -b -rfakeroot -us -uc --no-sign
+          mkdir packages
+          mv ../*.deb packages/
+          ls -l packages/
+      - name: Cache created packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ github.workspace }}/packages
+          key: zfs-packages-${{ github.sha }}-${{ matrix.target-os }}-${{ matrix.target-os-release }}
+  deploy:
+    needs: build
+    name: Deploy ZFS packages to APT repository
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target-os: debian, target-os-release: bookworm }
+          - { target-os: ubuntu, target-os-release: jammy }
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Restore cached packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ github.workspace }}/packages
+          key: zfs-packages-${{ github.sha }}-${{ matrix.target-os }}-${{ matrix.target-os-release }}
+      - name: Install packages needed for deployment to APT repository
+        shell: bash
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo bash -c "echo 'deb http://repo.aptly.info/ squeeze main' >> /etc/apt/sources.list"
+          wget -qO - https://www.aptly.info/pubkey.txt | sudo apt-key add -
+          sudo apt-get -yq update
+          sudo apt-get -yq install gnupg aptly
+      - name: Create APT repository and add packages
+        shell: bash
+        run: |
+          export REPOSITORY_NAME=zfs-packages
+          aptly repo create -distribution=${{ matrix.target-os-release }} -component=main ${REPOSITORY_NAME}
+          sed -i 's/\"architectures\": \[\]/\"architectures\": \[\"amd64\"\]/g' ~/.aptly.conf
+          echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+          ls packages/*.deb -1 | xargs aptly repo add ${REPOSITORY_NAME}
+          aptly publish repo --gpg-key="$(gpg --list-public-keys --keyid-format 0xLONG | \
+            sed -n -E 's/^pub\s+\w{1,30}[0-9]+\/0x([0-9A-Z]+)\s+.+$/\1/p')" --batch=true ${REPOSITORY_NAME}
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+      - name: Update files in "gh-pages" branch
+        shell: bash
+        run: |
+          export REPOSITORY_DIRECTORY=${{ matrix.target-os }}
+          export CURRENT_TIMESTAMP=$(date -Is)
+
+          rm -rf ${REPOSITORY_DIRECTORY}
+          mv ~/.aptly/public ${REPOSITORY_DIRECTORY}
+
+          python - <<END
+          import os
+
+          page_header = """<!DOCTYPE html>
+          <html>
+            <head><title>Index of {folder_path}</title></head>
+            <body>
+              <h2>Index of {folder_path}</h2>
+              <hr>
+              <ul>
+                <li><a href='../'>../</a></li>
+          """
+
+          page_footer = """
+              </ul>
+              <hr>
+              <p>Page generated on ${CURRENT_TIMESTAMP}.</p>
+            </body>
+          </html>
+          """
+
+          def index_folder(folder_path, web_root_path):
+              print(f'Build index page for "{folder_path}/"')
+              files = os.listdir(folder_path)
+              page_html = page_header.format(folder_path=f'/{web_root_path}/{os.path.normpath(folder_path)}')
+              for file in files:
+                  if file != 'index.html':
+                      page_html += f'{" " * 6}<li><a href="{file}">{file}</a></li>\n'
+                  if os.path.isdir(f'{folder_path}/{file}'):
+                      index_folder(f'{folder_path}/{file}', web_root_path)
+              page_html += page_footer
+              with open(f'{folder_path}/index.html', 'w') as index_file:
+                index_file.write(page_html)
+
+          index_folder(os.environ['REPOSITORY_DIRECTORY'], os.environ['GITHUB_REPOSITORY'].split('/').pop())
+          END
+
+          git config user.email "$(git log -n 1 --format=format:%ae)"
+          git config user.name "$(git log -n 1 --format=format:%an)"
+          git add ${REPOSITORY_DIRECTORY}
+          git commit -am "ZFS packages for ${{ matrix.target-os }}/${{ matrix.target-os-release }} generated from commit ${{ github.sha }}"
+          git pull --rebase
+          git push
