@@ -1,3 +1,10 @@
+zfs-linux (2.2.0~rc3-0ubuntu3) mantic; urgency=medium
+
+  * Cherrypick upstream pull request 15234 to hopefully fix
+    loading/unloading/reloading zfs modules.
+
+ -- Dimitri John Ledkov <dimitri.ledkov@canonical.com>  Fri, 01 Sep 2023 22:25:13 +0100
+
 zfs-linux (2.2.0~rc3-0ubuntu2) mantic; urgency=medium
 
   * Fix UBSAN array-index-out-of-bounds warnings (LP: #2033385):
