@@ -1,0 +1,602 @@
+Package: libnvpair3linux
+Priority: optional
+Section: contrib/libs
+Installed-Size: 189
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: libnvpair1, libnvpair3
+Depends: libc6 (>= 2.14), libtirpc3 (>= 1.0.2)
+Breaks: libnvpair1, libnvpair3
+Filename: pool/main/z/zfs-linux/libnvpair3linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 58980
+MD5sum: 8761019c1cd7787694052a8e85e468a5
+SHA1: ab85857a89d2e42bae02f2234cfa285de6e2b003
+SHA256: 9941a50ba1a5aeca407e26d1c36108dc0a1ffb8a7aa45ae5fe8bb3a411d29540
+SHA512: b15d83c668229480616576a7fd505ceb9b1995435c42d85a0eed108172ca50fc52c4bde48dd614d3508aa32bcd1d7569fb8641744b604db491d9a5f1c7f4ed67
+Description: Solaris name-value library for Linux
+ This library provides routines for packing and unpacking nv pairs for
+ transporting data across process boundaries, transporting between
+ kernel and userland, and possibly saving onto disk files.
+Homepage: https://zfsonlinux.org/
+
+Package: libnvpair3linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 132
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libnvpair3linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libnvpair3linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 107708
+MD5sum: 014406199bc2ed55bfbac4266782bb41
+SHA1: 262bc2ca58a5d6aef28c213924250c83cd974936
+SHA256: 6740bd7925b953f7f6332be16e446fe2a408d4f0a6c154c15fa16e4ac38841e4
+SHA512: 41ab0fde64b03bd76048fbda224a61c3af3a83b3ce2b8348b43d9e91c8edb2e806bafae50b1c2d11421a3183133b0ca247c4995516da79d9dd524395657ebb22
+Description: debug symbols for libnvpair3linux
+Auto-Built-Package: debug-symbols
+Build-Ids: e6e943084105760347b3f369def3dcf6893cadae
+
+Package: libpam-zfs
+Priority: optional
+Section: contrib/admin
+Installed-Size: 100
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libpam-runtime, libc6 (>= 2.14), libnvpair3linux (>= 0.8.2), libpam0g (>= 1.1.0), libssl3 (>= 3.0.0), libzfs4linux (>= 2.1.99-0ubuntu1)
+Filename: pool/main/z/zfs-linux/libpam-zfs_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 32080
+MD5sum: a4fe5f71e65a1c5a9a23fc3b5f8c7263
+SHA1: b4685dba0fcb56fbf5e0a561f5e9b996275da596
+SHA256: 491263162fdeb4603f074ba6320f5613986cce152264cc6fd81cc4f59b82fd7f
+SHA512: 219aeb5621f0a34e9737fe4ddaea1e699102eb68d193b0ff5f1a53d8fa1de0c2648fae924dd866b3dfb4014029cccc2ec018ba99768defd5ff6f66d96198a1c9
+Description: PAM module for managing encryption keys for ZFS
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This provides a Pluggable Authentication Module (PAM) that automatically
+ unlocks encrypted ZFS datasets upon login.
+Homepage: https://zfsonlinux.org/
+
+Package: libpam-zfs-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 38
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libpam-zfs (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libpam-zfs-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 23660
+MD5sum: 114f31e1639bfb39077ab1b5279c0659
+SHA1: c7e044e8f5974b9d0e22f5cd5b25d46470b71cd7
+SHA256: c381c2e41760966b6ea8a78ffc95d3bb15560910665df4aaaae1f40dd8580427
+SHA512: 00092f9aabc9f160e8720e5c8114b6bb8dc83d625301c98eccfcf485505f5922698d38ccb6f8df03efe964440330275da690fe81850bb49f1567fc49be9de374
+Description: debug symbols for libpam-zfs
+Auto-Built-Package: debug-symbols
+Build-Ids: 5af7a06fc691995d89eb5c7d454639dd13b2dd01
+
+Package: libuutil3linux
+Priority: optional
+Section: contrib/libs
+Installed-Size: 149
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: libuutil1, libuutil3
+Depends: libc6 (>= 2.34)
+Breaks: libuutil1, libuutil3
+Filename: pool/main/z/zfs-linux/libuutil3linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 50232
+MD5sum: be0d8fe8600b8af3e81f1400f789fa4b
+SHA1: aa85947428e21f28beec8409dc58064b7398844e
+SHA256: ec116570543f86e61053eacebe8203b282332f060eb3141e926158239637453a
+SHA512: 5a229c85c852b5858bed23b82b7e4dd0b9bee70ff05ac869d32b5aeeecd81e4a3a9eddc0f32a1747a6d5e5c4b40658bcad7916342874f4c7a3768eb8ac832322
+Description: Solaris userland utility library for Linux
+ This library provides a variety of glue functions for ZFS on Linux:
+  * libspl: The Solaris Porting Layer userland library, which provides APIs
+    that make it possible to run Solaris user code in a Linux environment
+    with relatively minimal modification.
+  * libavl: The Adelson-Velskii Landis balanced binary tree manipulation
+    library.
+  * libefi: The Extensible Firmware Interface library for GUID disk
+    partitioning.
+  * libshare: NFS, SMB, and iSCSI service integration for ZFS.
+Homepage: https://zfsonlinux.org/
+
+Package: libuutil3linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 76
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libuutil3linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libuutil3linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 54676
+MD5sum: b341e73969ba344cc4b1a0dfb283ce30
+SHA1: 5f5de907530454afc038a211e8aeb147544374fa
+SHA256: 6faafcf8950276dc5214ecc9c695cfcd486bb6e4c6f0a0378e7702ca9d28f0e6
+SHA512: 533fa75472d1ab1a2db298fa9352737ac3fde72b13d8c7c0a264ea54e9e4e89aa83a53fb478f7549d11b4c5a66a14c2eecbcc299a02250e5db36e125eb8c0319
+Description: debug symbols for libuutil3linux
+Auto-Built-Package: debug-symbols
+Build-Ids: 06c308afa38c0d2276d3df24f72ee3f69a5261d9
+
+Package: libzfs4linux
+Priority: optional
+Section: contrib/libs
+Installed-Size: 641
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: libzfs2, libzfs4
+Depends: libblkid1 (>= 2.16), libc6 (>= 2.34), libnvpair3linux (>= 0.8.2), libssl3 (>= 3.0.0), libudev1 (>= 183), libuuid1 (>= 2.16), libuutil3linux (>= 0.8.2), zlib1g (>= 1:1.1.4)
+Recommends: libcurl4
+Breaks: libzfs2, libzfs4
+Filename: pool/main/z/zfs-linux/libzfs4linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 224916
+MD5sum: af10c61f015871487bb32530d8b6f4ba
+SHA1: bfc4731d3238aeac8db368fe17b918cdda3959d3
+SHA256: 18ef45b6b5dd9ff26c27ed6da1aacf554f16ed7be21a1f62d8c4ebb1b0d95680
+SHA512: b02e94328a39d250c24baa1903ec3efcb6a8942dd03933d2ad23f9fc1fc27086f886666423bd58e02b426e8bfa9053f98ee187ef836dd49be762c3de800c0094
+Description: OpenZFS filesystem library for Linux - general support
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ The OpenZFS library provides support for managing OpenZFS filesystems.
+Homepage: https://zfsonlinux.org/
+
+Package: libzfs4linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 651
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libzfs4linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libzfs4linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 588964
+MD5sum: b71c76e45259842b8e1b4e5c32bc4c18
+SHA1: b1e3a909f58472f80a1c19eeeaa4f2b4c27a9702
+SHA256: c3cce40e706b246d30495971e8c83209962d2b0e52edaeaf72ee963a825d4614
+SHA512: 343f7bfdb19d2766e9c15e9aff8eb688c1bd8cde5c4c26b7652315ef2f5db727877f64f7144adefae9bb3206f4cd01abd361d9ded093ad2a5835ff4ff4f39047
+Description: debug symbols for libzfs4linux
+Auto-Built-Package: debug-symbols
+Build-Ids: 6e056698d5f923fe32f8884e84c8b35f184a898a b46556bcd97e99efd4925ded7085479f9b24a872
+
+Package: libzfsbootenv1linux
+Priority: optional
+Section: contrib/libs
+Installed-Size: 102
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: libzfs2, libzfs4
+Depends: libc6 (>= 2.8), libnvpair3linux (>= 0.8.2), libzfs4linux (>= 2.0)
+Breaks: libzfs2, libzfs4
+Filename: pool/main/z/zfs-linux/libzfsbootenv1linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 36032
+MD5sum: 64ca3b59cb67321d18d14517c5b3cb07
+SHA1: 9f6fc30103a6e26e77f7155438edc2629a7d3049
+SHA256: 0da4e0bfefd9e0a26fdcccca0aa8f8102d690a3949b5f52fb622e3db69b71a44
+SHA512: f97ad78cfe6e9ce19cd1e07eee84214ccc6c489f1b702fc4c8fc959b6c726637f159f8cec627d70b3b0ac8236b381327b63fd4f42453af910863e8947877b898
+Description: OpenZFS filesystem library for Linux - label info support
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ The zfsbootenv library provides support for modifying ZFS label information.
+Homepage: https://zfsonlinux.org/
+
+Package: libzfsbootenv1linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 28
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libzfsbootenv1linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libzfsbootenv1linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 13416
+MD5sum: 3a0f367cea47e128dfcda9178864807a
+SHA1: 6e2784b80437e7fb61249d62bda385b560bbc250
+SHA256: 8afda0b7009186af3d19c8cebbae4eabbe1faccca7dca6bb1054aad2438e13e6
+SHA512: 4e9ad2a09c732d689b114c09924cabffc28c24339b714fa9fafa7af3cba0a7b47dbcbdace99f640dcee07e3d830108b2d45815d9c8da307669b6187d06822590
+Description: debug symbols for libzfsbootenv1linux
+Auto-Built-Package: debug-symbols
+Build-Ids: 4ffb13cd5260344e5acc9f3040d1861b76c5c10e
+
+Package: libzfslinux-dev
+Priority: optional
+Section: contrib/libdevel
+Installed-Size: 11430
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Provides: libnvpair-dev, libuutil-dev
+Depends: libblkid-dev, libssl-dev | libssl1.0-dev, libnvpair3linux (= 2.2.0~rc3-0ubuntu3), libuutil3linux (= 2.2.0~rc3-0ubuntu3), libzfs4linux (= 2.2.0~rc3-0ubuntu3), libzfsbootenv1linux (= 2.2.0~rc3-0ubuntu3), libzpool5linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libzfslinux-dev_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 1932788
+MD5sum: 452de6a673f2dfe8af688d001a643889
+SHA1: 12a31f5bc473ccb6d50cd01eb8cd6495400e2566
+SHA256: 09e8f55a3655f73fc5ad844aa364ca5a53008772bade851630459f76423e512f
+SHA512: 2ee505cac5522c828d41083bb862872dbfe6645af94451fba7a4b328106e8523a77b135b0bcfa4f0aebb08dfdb6eb5c0de565df819d2823678f5732d89633cf8
+Description: OpenZFS filesystem development files for Linux
+ Header files and static libraries for compiling software against
+ libraries of OpenZFS filesystem.
+ .
+ This package includes the development files of libnvpair3, libuutil3,
+ libzpool5 and libzfs4.
+Homepage: https://zfsonlinux.org/
+
+Package: libzpool5linux
+Priority: optional
+Section: contrib/libs
+Installed-Size: 4312
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: libzpool2, libzpool5
+Depends: libblkid1 (>= 2.16), libc6 (>= 2.34), libnvpair3linux (>= 0.8.2), libudev1 (>= 183), libuuid1 (>= 2.16), zlib1g (>= 1:1.1.4)
+Breaks: libzpool2, libzpool5
+Filename: pool/main/z/zfs-linux/libzpool5linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 1334544
+MD5sum: 91ab24b31b815b1ad5a066882b8f2dc5
+SHA1: d1690df23b27c75ac9d8a237e34503fb622beaf2
+SHA256: 79043e1828e4801bab90ff71520c5f0febba77a735040df8aa6305f8ef315f97
+SHA512: 92f10bcc5ea35fdfda3f46a44b934b78a7d4a72e2d2cf7e45f9bb9e868a246cc78f803bc6c8b0dd9b6d46d880b1f03b662631a8f58370b45b538c7d8c29c8c00
+Description: OpenZFS pool library for Linux
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This zpool library provides support for managing zpools.
+Homepage: https://zfsonlinux.org/
+
+Package: libzpool5linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 5045
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libzpool5linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/libzpool5linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 4837148
+MD5sum: fd64f28b07795d730ebbb23804d8015c
+SHA1: d1c309c13ccdb56c96fe9637a6dffc0edfda2734
+SHA256: 29a2a64d80edf11473594d113b3ac9e0627f9134f79ccba0782c7ea2f707a417
+SHA512: c75a44b476ff82a6166d26ed7bbb27110b9c957a2a1944f4a6249a69f3989e9cb2e7c99a294e14ec9d4ccf090baee7243bfc2a4874a3f71faea833f18ad2993c
+Description: debug symbols for libzpool5linux
+Auto-Built-Package: debug-symbols
+Build-Ids: c3fb7334c33479b95c5715d0321da21bcc55f891
+
+Package: python3-pyzfs
+Priority: optional
+Section: contrib/python
+Installed-Size: 430
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: python3-cffi, zfsutils-linux (= 2.2.0~rc3-0ubuntu3), python3-cffi-backend-api-min (<= 9729), python3-cffi-backend-api-max (>= 9729), python3:any
+Filename: pool/main/z/zfs-linux/python3-pyzfs_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 68192
+MD5sum: 941572e9a60c23c9fb9696b510edd5ab
+SHA1: 1104b627227664bfbafba647b890239da5d4da6f
+SHA256: 569068ec1b9997b89753bd587197dbb6c307dfc8be88f6b167fa373f59c28ba8
+SHA512: 1c47a123c7062bd3df2e6a8a8d5645a098a594cf953dd3f9669a086b4bf088879547f290b3c47601e1d055f627d8cbddd7de7db6199f6798b3722130b54644e1
+Description: wrapper for libzfs_core C library
+ libzfs_core is intended to be a stable interface for programmatic
+ administration of ZFS. This wrapper provides one-to-one wrappers for
+ libzfs_core API functions, but the signatures and types are more natural to
+ Python.
+ .
+ nvlists are wrapped as dictionaries or lists depending on their usage.
+ Some parameters have default values depending on typical use for
+ increased convenience. Enumerations and bit flags become strings and lists
+ of strings in Python. Errors are reported as exceptions rather than integer
+ errno-style error codes.  The wrapper takes care to provide one-to-many
+ mapping of the error codes to the exceptions by interpreting a context
+ in which the error code is produced.
+Homepage: https://zfsonlinux.org/
+
+Package: pyzfs-doc
+Priority: optional
+Section: contrib/doc
+Installed-Size: 548
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: all
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: libjs-sphinxdoc (>= 5.2)
+Recommends: python3-pyzfs
+Filename: pool/main/z/zfs-linux/pyzfs-doc_2.2.0~rc3-0ubuntu3_all.deb
+Size: 61712
+MD5sum: 194721f8cd04f66411a36a9d17bd1986
+SHA1: 855834f596877511491d9795f544ea821a4d8f9b
+SHA256: ead7eaf83ebe89f1497e2d472869bee7a42feea105dac371fda82b6d06bc23fd
+SHA512: e27d9ffd49836b6033b7ada474fab6c66307b2452ee7c4aae04fb4893a937e1f914d566f9d8e497665549d8bc27338ae4f9d6270ec3a0ce1fc16a9840ff5acf8
+Description: wrapper for libzfs_core C library (documentation)
+ libzfs_core is intended to be a stable interface for programmatic
+ administration of ZFS. This wrapper provides one-to-one wrappers for
+ libzfs_core API functions, but the signatures and types are more natural to
+ Python.
+ .
+ nvlists are wrapped as dictionaries or lists depending on their usage.
+ Some parameters have default values depending on typical use for
+ increased convenience. Enumerations and bit flags become strings and lists
+ of strings in Python. Errors are reported as exceptions rather than integer
+ errno-style error codes.  The wrapper takes care to provide one-to-many
+ mapping of the error codes to the exceptions by interpreting a context
+ in which the error code is produced.
+ .
+ This package contains the documentation.
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-dkms
+Priority: optional
+Section: contrib/kernel
+Installed-Size: 18289
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: all
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: spl-dkms
+Provides: zfs-modules
+Depends: dkms (>> 2.1.1.2-5), file, libc6-dev | libc-dev, lsb-release, python3-distutils | libpython3-stdlib (<< 3.6.4), debconf (>= 0.5) | debconf-2.0, perl:any
+Recommends: zfs-zed, zfsutils-linux (>= 2.2.0~rc3-0ubuntu3), linux-libc-dev (<< 6.5~), linux-libc-dev (>= 3.10~)
+Suggests: debhelper
+Breaks: spl-dkms (<< 0.8.0~rc1)
+Filename: pool/main/z/zfs-linux/zfs-dkms_2.2.0~rc3-0ubuntu3_all.deb
+Size: 2382084
+MD5sum: 28ab93e56469b34ad4d65ea0641f7c76
+SHA1: d016c0c9dcbf44b549bdf9b077bd467232d2c293
+SHA256: a34c14b2386bde7b34772d8a032fb7fc52b34aaa6b4ce7870594e59fe3542074
+SHA512: 280adce6a2feffb8ae4fb9bcfe8d0d944487ac288d4e984a5b5c3ae25256b4986a53d8b0b7795842f2038d510f1c5004a7ffef47bb9da0b55faab9eed695e240
+Description: OpenZFS filesystem kernel modules for Linux
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This DKMS package includes the SPA, DMU, ZVOL, and ZPL components of
+ OpenZFS.
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-dracut
+Priority: optional
+Section: contrib/kernel
+Installed-Size: 108
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: dracut, zfsutils-linux (>= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/zfs-dracut_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 34716
+MD5sum: a354ae50a4edf610fbba235b8390872b
+SHA1: b1a624fc9c0a4f60488c9b8b0818ab84986a1403
+SHA256: f7849010344484b228bd89a25a08f4542ebebf8d2811c9db21864a7bdb808629
+SHA512: 3d86af33f022e2b7bbf95790dc828c6957ffc1cae4be57dcc70b59f405a89631e55db6cfc5e5323f0041d0321769c988c0a20bfdfe51e50761b3a6a6dcdbc545
+Description: OpenZFS root filesystem capabilities for Linux - dracut
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package adds OpenZFS to the system initramfs with a hook
+ for the dracut infrastructure.
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-initramfs
+Priority: optional
+Section: contrib/kernel
+Installed-Size: 119
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: zfsutils-linux (<= 0.7.11-2)
+Depends: busybox-initramfs | busybox-static | busybox, initramfs-tools, zfsutils-linux (>= 2.2.0~rc3-0ubuntu3)
+Breaks: zfsutils-linux (<= 0.7.11-2)
+Filename: pool/main/z/zfs-linux/zfs-initramfs_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 36252
+MD5sum: bcb3e082cdb79fef1e692b1aa696ba66
+SHA1: b3d798b74127d3449691370f0227829dafbde21c
+SHA256: f4dc1d6d5e8c5694b45f8924b4e96c78d5afd984d324874dcbbaa9b465de651e
+SHA512: b1e64620cf39e341efb40f46503205919aac555ee83aaaed40a462bf3856251617c875cb7c70eb17dbdbff0ac56d7c1a50053d56a478102e845ff6a36ea01ee9
+Description: OpenZFS root filesystem capabilities for Linux - initramfs
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package adds OpenZFS to the system initramfs with a hook
+ for the initramfs-tools infrastructure.
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-test
+Priority: optional
+Section: contrib/admin
+Installed-Size: 34556
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: zfsutils-linux (<= 0.7.9-2)
+Depends: acl, attr, bc, fio, ksh, lsscsi, mdadm, parted, python3, python3-pyzfs, sudo, sysstat, zfsutils-linux (>= 2.2.0~rc3-0ubuntu3), libaio1 (>= 0.3.93), libc6 (>= 2.34), libnvpair3linux (>= 0.8.2), libudev1 (>= 183), libzfs4linux (>= 2.2.0~rc3-0ubuntu3), libzpool5linux (>= 2.2.0~rc3-0ubuntu3), zlib1g (>= 1:1.2.3.3)
+Recommends: nfs-kernel-server
+Conflicts: zutils
+Breaks: zfsutils-linux (<= 0.7.9-2)
+Filename: pool/main/z/zfs-linux/zfs-test_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 28509192
+MD5sum: d44a5585e789f62d76aee614f46659df
+SHA1: 8af975585071021958edcbe8b94477f5a00f3281
+SHA256: 6c544b87625e8fc56db10a96e6c1467b808657e14e4ec3dda427e3819408b3a2
+SHA512: 10d589dc3058b5e44bc7c920509405ab795cfc4df4fc7fe033b20e7690091ace8ecec29f10c76e67bfd92e82c005fc3a47a21a4e0f15dd78bf260cd5101d1def
+Description: OpenZFS test infrastructure and support scripts
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package provides the OpenZFS test infrastructure for destructively
+ testing and validating a system using OpenZFS. It is entirely optional
+ and should only be installed and used in test environments.
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-test-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 1114
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: zfs-test (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/zfs-test-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 647272
+MD5sum: 7e38029d90b1dbb7793a405483ac1cc5
+SHA1: 6af9b11b1d929e3678eb8e7c7e73d81a4e1cde2f
+SHA256: a5078085aa27fb750c346fc59463c4c1a2606c5c143ff96a83f44a38ca26b93c
+SHA512: 86f4c176c06e721f3999528a2746289ce54ca814264de8c15f5488685dcf5745d7e15d84f9d643835291ef70dd45cf16fe315e85766fa961a44329a02c67354a
+Description: debug symbols for zfs-test
+Auto-Built-Package: debug-symbols
+Build-Ids: 04f1537675e5ffdfa397fef9f61defcea0057883 05b29086202c6f1d72f6dc8a4552bcaea3f4c6e0 074e26c14775858e8c6fe6f01cdd10944f38e709 078e8354214351cde2018374f6af24b2d4762f01 0abfbc46e0f8e7ac547ee6a66d3090055b4bba1c 0c4f8293a0db281535f06c9895ab5038496c9eeb 178778c09e44b1c7d58753dc0c37bd433a20f6bd 1796d810b3b471b2722a4292b895f26607867f75 18491d2d83dbdf01d50da79e66faa852f4e3350b 1f04551221a75f832f1fbd6dc6bbe3ae2a3a40f9 222ae2368d314eb36795fa79a54b66140da314bc 2666d07a477feb51be9ca5f594b4c8f7e2c40414 2ce0d7e9b3960897bc9c8dbf2566f5678ccecdc3 31c6400007b049b8d27167781f451520aae3df87 373ca3f6412b29fc8259aaef83c5caef9b169a2a 3c2b288616e6b9822d55756e769b1b88ee51af3b 3c59a391e99bd52f94e6514832fa17085246ddc4 3e95d7d886afb053414aa6965792f3c11b7d199b 3feaa0eb3d055c3558bfa07e5365bc32b8451dc5 457949e5639e6c65627e2e9ddecb703bb9e67571 4a49388280677b2cb461eef810f918f73fb46391 510086c0e8b0cc9b4e4e3e060f5fcabc5150f5d1 56787b16adc6f9cd6a2393bc19d31dae0c3f1c6a 5885bc4e6e8f21620dd119874d580f53827d43bb 590e048d430dde76b4b366f1b2186a901e26eccf 6056782018755a88756201b39755597c338b1bbd 62c433eb6ce879131d5f7a67b04456574b69e811 72dcb7f0619a1c6c8fbde01dbb8d2396f595fb25 7363e08d24463ebb406b52c095632a560b9928cf 76273d8a558b6708af0052eb2f33c35dfe59f5be 7798f85e96948b5b6651641ee137e0656684ac01 81c76b5bf996c4e3e649cec9dc455717c1322ea0 8891109349db8b2b1a6668b06ce63a57b189da48 8e940c373d13533c97b4e5760b1eb60f429faa95 8f055d8bcfa75c002c8b9dc40321480bda239969 91103c4be4a6aa603b566a222575cafb118e000a 921d8dc86fcdb09c25a08b9cb0ea9d85a2cc8a01 929dc8b7674e8edf410dd09e4bf57cb091432260 991bb3ea97ca56bc9a521e4f5082bbb60fa28c3e a3bedd5d604988f12be523a83c6ce46cd0b50289 a47b1f369a4abdb5a94787c12d16d1b86b172671 b76ffea7b8e7dcdd9855cb03838cd9df856628d6 b8de1c94287345a4ca619fb29b2c0020e644fd39 bf1ee1ee52e6744ac65edc6595ba1c70e2d95256 c0e368720de42c5b41c6893de55274e8dc3fb717 c3dccd18cbcaadd3b04cd3d3b77dfc9a57e6ccad c3e1c47065201a32cf5ee2793c479476b6dfa92b c9f6659029bc8afb0e84a7c503bcf2e9f573d4a0 cb78530d2b22f152822f719b38c74c91973bb2ae cc8724f86ba1f3a02c6cdf1a9030b14df1686448 cf24cce98070c5a2a8190e0bba1ea1c50abb40e9 d34aa8c05644ddd478fe0d7ea8abdaff4f2bf29d da85384b01695c785b9c8975c2a98a42adf93e16 db8482f0aefb988e4b3c2b7dc71badc124235b25 dc453b4a2f73b1d80f794915e564d71dd1fb31a3 e03908f43ca90276c6bc163e38116d2aa4ca7a9f e2a4179985cb44f43498398616944456549cc140 e34a185b56181fea9b45ef31795d3c320c55ae7f e3eb4022559112356772783cf96baccab8e01d00 e4cd617603225eaea865f2c10ccb65f1890f43b5 f571a9393c7a794778462c4919c65a810cb701af fa2a2c6e1dfb13d643ca3e4af44727d3c51109d0
+
+Package: zfs-zed
+Priority: optional
+Section: contrib/admin
+Installed-Size: 268
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: zfsutils-linux (>= 2.2.0~rc3-0ubuntu3), libc6 (>= 2.34), libnvpair3linux (>= 0.8.2), libudev1 (>= 183), libuuid1 (>= 2.16), libuutil3linux (>= 0.8.2), libzfs4linux (>= 2.2.0~rc3-0ubuntu3)
+Pre-Depends: init-system-helpers (>= 1.54~)
+Filename: pool/main/z/zfs-linux/zfs-zed_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 76900
+MD5sum: f7a49be7eb77e5489df8a8fec72189c1
+SHA1: 3bbd7b971b6a24bf30918d1363a1d526b9819e8c
+SHA256: b3fb9ed5382fdcda30bfa323cc50aab0a8ceb0431eb6b3c2e96f5a63012d2324
+SHA512: 42a6445f8a70afd5c02557c55971abf32d8063ecdf73f887a86007d64cc07ea5d2d33f3f4ba120db5c5b1410a1e25ac6cd965cd0e1748f559f4e040d03a3df56
+Description: OpenZFS Event Daemon
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ ZED (ZFS Event Daemon) monitors events generated by the ZFS kernel
+ module. When a zevent (ZFS Event) is posted, ZED will run any ZEDLETs
+ (ZFS Event Daemon Linkage for Executable Tasks) that have been enabled
+ for the corresponding zevent class.
+ .
+ This package provides the OpenZFS Event Daemon (zed).
+Homepage: https://zfsonlinux.org/
+
+Package: zfs-zed-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 132
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: zfs-zed (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/zfs-zed-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 107340
+MD5sum: c85bbdfa9d1dcfaedf788aef16a8bcc9
+SHA1: 8b50a778d08366ca477d51eb1a71dd42b78fa820
+SHA256: 75729d26f2118bb684c54983276f41e06305b453b12058bfb1a2820080150d3f
+SHA512: f1c56da5349206ec208f21adca02f84f644985ece69f1a6caf563946a50086e41bdc6a4f40ece5ef20c09ba7861410764003d55529b6c1ac095482993a332574
+Description: debug symbols for zfs-zed
+Auto-Built-Package: debug-symbols
+Build-Ids: 1d040bd4309644d2da6e7495f5693828bd74e404
+
+Package: zfsutils-linux
+Priority: optional
+Section: contrib/admin
+Installed-Size: 1737
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Replaces: spl (<< 0.7.9-2), spl-dkms
+Provides: zfsutils
+Depends: libnvpair3linux (= 2.2.0~rc3-0ubuntu3), libuutil3linux (= 2.2.0~rc3-0ubuntu3), libzfs4linux (= 2.2.0~rc3-0ubuntu3), libzpool5linux (= 2.2.0~rc3-0ubuntu3), python3, libblkid1 (>= 2.16), libc6 (>= 2.34), libssl3 (>= 3.0.0), libudev1 (>= 183), libuuid1 (>= 2.16)
+Pre-Depends: init-system-helpers (>= 1.54~)
+Recommends: zfs-zed
+Suggests: nfs-kernel-server, samba-common-bin (>= 3.0.23), zfs-initramfs | zfs-dracut
+Conflicts: zfs, zfs-fuse
+Breaks: openrc, spl (<< 0.7.9-2), spl-dkms (<< 0.8.0~rc1), zfs-dkms (>> 2.2.0~rc3-0ubuntu3...), zfs-dkms (<< 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/zfsutils-linux_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 550628
+MD5sum: 1c5b3ca3435a6cf660169c75a7615642
+SHA1: 0f409712fa8840bc4d5ebbb0ac3332086594f716
+SHA256: 29b8a5848be77e93a7cca7be2cdd92e9a5756ba7013ac1373144b9e5ada0dc91
+SHA512: e780931e250fce8afbb7c728cafc9177d44df561a0563824011c32f96a7e9ba3f5bfe9075bc3b387373ae942a3ee916f70602b129b4b337129651ad756c88b88
+Description: command-line tools to manage OpenZFS filesystems
+ OpenZFS is a storage platform that encompasses the functionality of
+ traditional filesystems and volume managers. It supports data checksums,
+ compression, encryption, snapshots, and more.
+ .
+ This package provides the zfs and zpool commands to create and administer
+ OpenZFS filesystems.
+Homepage: https://zfsonlinux.org/
+
+Package: zfsutils-linux-dbgsym
+Priority: optional
+Section: contrib/debug
+Installed-Size: 871
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Debian ZFS on Linux maintainers <pkg-zfsonlinux-devel@alioth-lists.debian.net>
+Architecture: amd64
+Source: zfs-linux
+Version: 2.2.0~rc3-0ubuntu3
+Depends: zfsutils-linux (= 2.2.0~rc3-0ubuntu3)
+Filename: pool/main/z/zfs-linux/zfsutils-linux-dbgsym_2.2.0~rc3-0ubuntu3_amd64.deb
+Size: 754296
+MD5sum: e0fc979d7efd292d4b39c293e5e0f49d
+SHA1: 391affffcf062d929b451f140bd58886405c24bf
+SHA256: 8a70ef219a0bc8af7cfdec98356ade0502b646b6b09c4698d7ae569e3e64552f
+SHA512: 9e66ed224389ea877f2ac71119f36171ae675cd4b4185864bc6731f07401de71bb9d46b59dba45f4be3de8da8bd74d70c8b5fb20d536c7a8d317c7a8ea663893
+Description: debug symbols for zfsutils-linux
+Auto-Built-Package: debug-symbols
+Build-Ids: 308f4dc674fc2aaa9cb4bf7f543e54f9e63ae4e4 51552e1c0e49b5d96bb4e84259bba8fe65477449 5181431d6f53ea6dabd0cb3d26dd3f72fc843112 557d3625ce7a722a03d8f4532f58bb5b18748d30 7cf417c48d03feb54e05ba0458b8dea291d0a0d8 ac8bd7dfbc93330c10cd08a9382fb588cf2a9aa1 ba8a577c22a6f05f8e2e9f38c9974ba1e8e34f9d cd74a9074e9a506982f05f4557bef8fe41c76c94 cf97c5bdc4b28c364333f7cf25836f2e6fdda55c f8f3b817b949e156373914c61b8411fbc7ec6dcd
+
