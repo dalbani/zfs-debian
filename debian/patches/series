@@ -37,3 +37,4 @@ bash-completion.patch
 fixup-abi.patch
 4630-ubsan-Support-varlen-arrays-at-end-of-struct-as-1-or.patch
 ab09fbd4c2ca565c146060b7b2e1dd8c6fe0a818.patch
+4635-Linux-6.5-compat-spl-properly-unregister-sysctl-entr.patch
